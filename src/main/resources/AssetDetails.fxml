@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="667.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.brian.assetmanagement.controller.FXMLDocumentController">
+   <children>
+      <HBox alignment="TOP_RIGHT" layoutX="-5.0" prefHeight="134.0" prefWidth="911.0" styleClass="parent" stylesheets="@css/styles.css">
+         <children>
+            <VBox>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="134.0" prefWidth="324.0" text="ASM - Asset Management System" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets left="10.0" />
+                     </opaqueInsets>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="442.0" layoutY="10.0" prefHeight="134.0" prefWidth="155.0">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="60" wrappingWidth="56.14285755157471" />
+                  <Label text="Dashboard" textFill="WHITE" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="766.0" layoutY="10.0" prefHeight="134.0" prefWidth="155.0">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BARCODE" size="60" wrappingWidth="56.14285755157471" />
+                  <Label text="Assets" textFill="WHITE" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="766.0" layoutY="10.0" prefHeight="134.0" prefWidth="155.0">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="60" wrappingWidth="56.14285755157471" />
+                  <Label text="Employees" textFill="WHITE" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="766.0" layoutY="10.0" prefHeight="134.0" prefWidth="155.0">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="TRUCK" size="60" wrappingWidth="56.14285755157471" />
+                  <Label text="Vendors" textFill="WHITE" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox layoutX="-5.0" layoutY="134.0" prefHeight="15.0" prefWidth="911.0" styleClass="child" stylesheets="@css/styles.css">
+         <children>
+            <FontAwesomeIconView glyphName="BARCODE" size="35" wrappingWidth="34.0">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="74.0" text="Assets">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="-5.0" layoutY="170.0" prefHeight="15.0" prefWidth="911.0" styleClass="parent" stylesheets="@css/styles.css" />
+      <HBox layoutX="-5.0" layoutY="185.0" prefHeight="481.0" prefWidth="911.0" styleClass="child" stylesheets="@css/styles.css">
+         <children>
+            <VBox prefHeight="481.0" prefWidth="450.0">
+               <children>
+                  <Label alignment="CENTER" text="ID">
+                     <VBox.margin>
+                        <Insets left="30.0" top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField prefHeight="10.0" prefWidth="100.0" promptText="ID">
+                     <opaqueInsets>
+                        <Insets left="30.0" top="30.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label alignment="CENTER" layoutX="40.0" layoutY="40.0" text="Type">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField layoutX="40.0" layoutY="71.0" prefHeight="10.0" prefWidth="100.0" promptText="Type">
+                     <opaqueInsets>
+                        <Insets left="30.0" top="30.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="102.0" text="Manufacturer">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField layoutX="10.0" layoutY="123.0" prefHeight="10.0" prefWidth="100.0" promptText="Manufacturer">
+                     <opaqueInsets>
+                        <Insets left="30.0" top="30.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="154.0" text="Model">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField layoutX="10.0" layoutY="175.0" prefHeight="10.0" prefWidth="100.0" promptText="Model">
+                     <opaqueInsets>
+                        <Insets left="30.0" top="30.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="206.0" text="Serial Number">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField layoutX="10.0" layoutY="227.0" prefHeight="10.0" prefWidth="100.0" promptText="Serial Number">
+                     <opaqueInsets>
+                        <Insets left="30.0" top="30.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Button mnemonicParsing="false" text="Check-in">
+                           <opaqueInsets>
+                              <Insets right="30.0" />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets right="70.0" top="30.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" text="Check-out">
+                           <HBox.margin>
+                              <Insets top="30.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="481.0" prefWidth="450.0">
+               <children>
+                  <Label alignment="CENTER" text="Purchase Date">
+                     <VBox.margin>
+                        <Insets left="30.0" top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <DatePicker prefHeight="31.0" prefWidth="389.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
+                     </VBox.margin>
+                     <opaqueInsets>
+                        <Insets top="5.0" />
+                     </opaqueInsets>
+                  </DatePicker>
+                  <Label alignment="CENTER" layoutX="40.0" layoutY="40.0" text="Warranty">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField layoutX="40.0" layoutY="71.0" prefHeight="10.0" prefWidth="100.0" promptText="Warranty">
+                     <opaqueInsets>
+                        <Insets left="30.0" top="30.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="102.0" text="OS">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField layoutX="10.0" layoutY="123.0" prefHeight="10.0" prefWidth="100.0" promptText="OS">
+                     <opaqueInsets>
+                        <Insets left="30.0" top="30.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="154.0" text="HD Size">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField layoutX="10.0" layoutY="175.0" prefHeight="10.0" prefWidth="100.0" promptText="HD Size">
+                     <opaqueInsets>
+                        <Insets left="30.0" top="30.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="206.0" text="RAM">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField layoutX="10.0" layoutY="227.0" prefHeight="10.0" prefWidth="100.0" promptText="RAM">
+                     <opaqueInsets>
+                        <Insets left="30.0" top="30.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="70.0" top="30.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button layoutX="203.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Save" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets top="30.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
