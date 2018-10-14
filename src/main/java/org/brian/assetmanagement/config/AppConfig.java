@@ -8,6 +8,7 @@ package org.brian.assetmanagement.config;
 import java.util.ResourceBundle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
  * Used to define the spring beans that shall be loaded on startup.
  */
 @Configuration
+@ComponentScan(basePackages={"org.brian.assetmanagement"})
 public class AppConfig {
 	
     @Autowired 

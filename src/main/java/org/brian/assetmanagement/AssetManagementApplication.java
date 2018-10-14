@@ -6,23 +6,42 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@EnableAutoConfiguration
+
+@EnableJpaRepositories("org.brian.assetmanagement.repository")
+//@EntityScan("com.brian.assetmanagement.bean")
+
 public class AssetManagementApplication extends Application {
     
     protected ConfigurableApplicationContext springContext;
+    
+    private static String[] savedArgs;
+    
+    
     @Override
     public void init() throws Exception {
-        springContext = springBootApplicationContext();
+//        springContext = springBootApplicationContext();
+
+        // set Thread name
+        Thread.currentThread().setName("main");
+
+        springContext = SpringApplication.run(getClass(), savedArgs);
+        springContext.getAutowireCapableBeanFactory().autowireBean(this);
     }
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/FXMLDocument.fxml")); // need to replace this with JavaFXLoaderUtil. 
-        
+        Parent root = FXMLLoader.load(getClass().getResource("/Assets.fxml")); // need to replace this with JavaFXLoaderUtil. 
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
@@ -44,7 +63,9 @@ public class AssetManagementApplication extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        savedArgs = args;
+//        launch(args);
+        Application.launch(AssetManagementApplication.class, args);
     }
     
 }
