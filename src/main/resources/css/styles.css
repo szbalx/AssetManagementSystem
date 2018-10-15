@@ -4,3 +4,12 @@
 .child{
     -fx-background-color: #ccccff
 }
+
+/* CSS for alligning table cells and columns properly. */
+.table-column{
+    -fx-alignment: CENTER-RIGHT;
+}
+
+.table-cell{
+    -fx-alignment: CENTER;
+}

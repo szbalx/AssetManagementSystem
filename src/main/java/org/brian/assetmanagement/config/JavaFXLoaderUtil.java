@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
 /**
  * @author Kavitha
  * Loads the fxml files on startup and allows JavaFX files to be used in Spring Boot App. 
- * TODO: replace the FXMLLoader with this class inside the AssetManagementApplication.start. 
+ * The static load function available from javafx.fxml.FXMLLoader interferes with SpringBoot startup because of which 
+ * components and services may not be loaded properly. This 
  */
 @Component
 public class JavaFXLoaderUtil {
@@ -26,7 +27,7 @@ public class JavaFXLoaderUtil {
 
     public Parent load(String fxmlPath) throws IOException {      
         FXMLLoader loader = new FXMLLoader();
-        loader.setControllerFactory(context::getBean); //Spring now FXML Controller Factory
+        loader.setControllerFactory(context::getBean);
         loader.setResources(resourceBundle);
         loader.setLocation(getClass().getResource(fxmlPath));
         return loader.load();

@@ -13,14 +13,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-//import javafx.scene.control.SelectionMode;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.brian.assetmanagement.bean.Asset;
 import org.brian.assetmanagement.service.AssetService;
-//import org.brian.assetmanagement.service.impl.AssetServiceImpl;
-import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -59,7 +57,7 @@ public class AssetController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        assetTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        assetTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         setTableColumnProperties();
         populateAssets();
     }
@@ -72,20 +70,9 @@ public class AssetController implements Initializable{
 
     private void populateAssets() {
         assetList.clear();
-        Asset asset = new Asset();
-        asset.setType("Laptop");
-        asset.setManufacturer("Lenovo");
-        asset.setModel("00001");
-        asset.setSerial("24647654725");
-        asset.setAssignedTo("Mark Smith");
-        assetList.add(asset);
-        assetTable.setItems(assetList);
-//        The following code is throwing null pointer exception although it would work in normal Spring Boot project
-//        TODO: identify why the repository is null in the spring context and resolve.
-//        if(assetService.getAll() != null ){
-//            assetList.addAll(assetService.getAll());
-//            assetTable.setItems(assetList);
-//        }
+        createDummyAssets();
+            assetList.addAll(assetService.getAll());
+            assetTable.setItems(assetList);
     }
 
     private void setTableColumnProperties() {
@@ -95,6 +82,25 @@ public class AssetController implements Initializable{
         colModel.setCellValueFactory(new PropertyValueFactory<>("model"));
         colSerial.setCellValueFactory(new PropertyValueFactory<>("serial"));
         colAssignedTo.setCellValueFactory(new PropertyValueFactory<>("assignedTo"));
+    }
+
+    private void createDummyAssets() {
+        Asset asset = new Asset();
+        asset.setId(1L);
+        asset.setType("Laptop");
+        asset.setManufacturer("Lenovo");
+        asset.setModel("00001");
+        asset.setSerial("24647654725");
+        asset.setAssignedTo("Mark Smith");
+        assetService.save(asset);
+        asset = new Asset();
+        asset.setId(2L);
+        asset.setType("Laptop");
+        asset.setManufacturer("Lenovo");
+        asset.setModel("asdf123");
+        asset.setSerial("00253242345456");
+        asset.setAssignedTo("Brian Stoiber");
+        assetService.save(asset);
     }
     
 }

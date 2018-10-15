@@ -22,15 +22,19 @@ import javax.persistence.Table;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employeeID", updatable = false, nullable = false)
+    @Column(name = "employeeid", updatable = false, nullable = false)
     private long employeeID;
     
+    @Column(name = "name")
     private String name;
     
+    @Column(name = "phone_number")
     private String phoneNumber;
     
+    @Column(name = "email")
     private String email;
     
+    @Column(name = "start_date")
     private String startDate;
 
     public long getEmployeeID() {

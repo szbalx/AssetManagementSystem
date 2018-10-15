@@ -25,19 +25,19 @@ public class Asset {
     @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
-    @Column
+    @Column(name = "type")
     private String type;
 
-    @Column
+    @Column(name = "manufacturer")
     private String manufacturer;
 
-    @Column
+    @Column(name = "model")
     private String model;
 
-    @Column
+    @Column(name = "serial")
     private String serial;
 
-    @Column(name="assigned_To")
+    @Column(name="assigned_to")
     private String assignedTo;
 
     public long getId() {

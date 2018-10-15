@@ -10,7 +10,7 @@ import org.brian.assetmanagement.bean.Asset;
 
 /**
  *
- * @author Suresh
+ * @author Kavitha
  */
 public interface AssetService {
     public void save(Asset asset);
