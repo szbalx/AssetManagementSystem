@@ -33,7 +33,7 @@ public enum ViewResolver {
             return "/AssetDetails.fxml";
         }
     },
-    ENPLOYEES {
+    EMPLOYEES {
         @Override
         public String getTitle() {
             return getStringFromResourceBundle("employee.title");

@@ -32,7 +32,7 @@
                   <Label text="Dashboard" textFill="WHITE" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" layoutX="766.0" layoutY="10.0" prefHeight="134.0" prefWidth="155.0">
+            <VBox fx:id="assetVBox" alignment="CENTER" layoutX="766.0" layoutY="10.0" onMouseClicked="#handleAssetVBoxClick" prefHeight="134.0" prefWidth="155.0">
                <children>
                   <FontAwesomeIconView fill="WHITE" glyphName="BARCODE" size="60" wrappingWidth="56.14285755157471" />
                   <Label text="Assets" textFill="WHITE" />
@@ -69,13 +69,13 @@
       <HBox layoutX="-5.0" layoutY="170.0" prefHeight="15.0" prefWidth="911.0" styleClass="parent" stylesheets="@css/styles.css" />
       <HBox layoutX="-5.0" layoutY="185.0" prefHeight="481.0" prefWidth="911.0" styleClass="child" stylesheets="@css/styles.css">
          <children>
-            <TableView prefHeight="481.0" prefWidth="920.0">
+            <TableView fx:id="employeeTable" prefHeight="481.0" prefWidth="920.0">
               <columns>
-                <TableColumn prefWidth="134.0" text="Employee ID" />
-                <TableColumn prefWidth="254.0" text="Name" />
-                  <TableColumn prefWidth="92.0" text="Phone #" />
-                  <TableColumn prefWidth="267.0" text="Email" />
-                  <TableColumn minWidth="0.0" prefWidth="163.0" text="Start Date" />
+                <TableColumn fx:id="colEmpId" prefWidth="134.0" text="Employee ID" />
+                <TableColumn fx:id="colEmpName" prefWidth="254.0" text="Name" />
+                  <TableColumn fx:id="colPhoneNum" prefWidth="92.0" text="Phone #" />
+                  <TableColumn fx:id="colEmpEmail" prefWidth="267.0" text="Email" />
+                  <TableColumn fx:id="colStartDate" minWidth="0.0" prefWidth="163.0" text="Start Date" />
               </columns>
             </TableView>
          </children>

@@ -5,6 +5,7 @@
  */
 package org.brian.assetmanagement.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -18,8 +19,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.brian.assetmanagement.bean.Asset;
+import org.brian.assetmanagement.config.FXMLSceneManager;
 import org.brian.assetmanagement.service.AssetService;
+import org.brian.assetmanagement.view.ViewResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -53,6 +57,10 @@ public class AssetController implements Initializable{
     @Autowired
     private AssetService assetService;
     
+    @Autowired
+    @Lazy
+    private FXMLSceneManager sceneManager;
+    
     private ObservableList<Asset> assetList = FXCollections.observableArrayList();
 
     @Override
@@ -71,8 +79,8 @@ public class AssetController implements Initializable{
     private void populateAssets() {
         assetList.clear();
         createDummyAssets();
-            assetList.addAll(assetService.getAll());
-            assetTable.setItems(assetList);
+        assetList.addAll(assetService.getAll());
+        assetTable.setItems(assetList);
     }
 
     private void setTableColumnProperties() {
@@ -103,4 +111,9 @@ public class AssetController implements Initializable{
         assetService.save(asset);
     }
     
+        
+    @FXML
+    private void handleEmployeesClick() throws IOException{
+        sceneManager.switchScene(ViewResolver.EMPLOYEES);
+    }
 }
