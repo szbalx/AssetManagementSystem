@@ -71,8 +71,8 @@
             <VBox alignment="TOP_CENTER" prefHeight="481.0" prefWidth="306.0">
                <children>
                   <FontAwesomeIconView glyphName="BARCODE" size="40" wrappingWidth="34.0" />
-                  <Hyperlink styleClass="mylabel" stylesheets="@css/styles.css" text="View Assets" />
-                  <Hyperlink layoutX="119.0" layoutY="51.0" styleClass="mylabel" stylesheets="@css/styles.css" text="Add New Asset" />
+                  <Hyperlink fx:id="viewAsset" onAction="#handleHyperLinkForward" styleClass="mylabel" stylesheets="@css/styles.css" text="View Assets" />
+                  <Hyperlink fx:id="addNewAsset" layoutX="119.0" layoutY="51.0" onAction="#handleHyperLinkForward" styleClass="mylabel" stylesheets="@css/styles.css" text="Add New Asset" />
                </children>
                <HBox.margin>
                   <Insets top="90.0" />
@@ -81,8 +81,8 @@
             <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="481.0" prefWidth="306.0">
                <children>
                   <FontAwesomeIconView glyphName="USERS" size="40" wrappingWidth="34.0" />
-                  <Hyperlink styleClass="mylabel" stylesheets="@css/styles.css" text="View Employees" />
-                  <Hyperlink layoutX="105.0" layoutY="227.0" styleClass="mylabel" stylesheets="@css/styles.css" text="Add New Employee" />
+                  <Hyperlink fx:id="viewEmployee" onAction="#handleHyperLinkForward" styleClass="mylabel" stylesheets="@css/styles.css" text="View Employees" />
+                  <Hyperlink fx:id="addNewEmployee" layoutX="105.0" layoutY="227.0" onAction="#handleHyperLinkForward" styleClass="mylabel" stylesheets="@css/styles.css" text="Add New Employee" />
                </children>
                <HBox.margin>
                   <Insets bottom="30.0" top="30.0" />
@@ -91,8 +91,8 @@
             <VBox alignment="TOP_CENTER" layoutX="296.0" layoutY="10.0" prefHeight="481.0" prefWidth="293.0">
                <children>
                   <FontAwesomeIconView glyphName="TRUCK" size="40" wrappingWidth="34.0" />
-                  <Hyperlink styleClass="mylabel" stylesheets="@css/styles.css" text="View Vendors" />
-                  <Hyperlink layoutX="113.0" layoutY="51.0" styleClass="mylabel" stylesheets="@css/styles.css" text="Add New Vendor" />
+                  <Hyperlink fx:id="viewVendor" onAction="#handleHyperLinkForward" styleClass="mylabel" stylesheets="@css/styles.css" text="View Vendors" />
+                  <Hyperlink fx:id="addNewVendor" layoutX="113.0" layoutY="51.0" onAction="#handleHyperLinkForward" styleClass="mylabel" stylesheets="@css/styles.css" text="Add New Vendor" />
                </children>
                <HBox.margin>
                   <Insets top="90.0" />

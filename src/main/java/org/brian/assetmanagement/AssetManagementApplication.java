@@ -25,7 +25,8 @@ public class AssetManagementApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         sceneManager = springContext.getBean(FXMLSceneManager.class, stage);
-        sceneManager.switchScene(ViewResolver.ASSETS);
+        sceneManager.switchScene(ViewResolver.DASHBOARD);
+//        sceneManager.switchScene(ViewResolver.ASSETS);
 //        sceneManager.switchScene(ViewResolver.EMPLOYEES);
     }
     

@@ -32,7 +32,8 @@ import org.springframework.stereotype.Controller;
  * @author Kavitha
  */
 @Controller
-public class EmployeeController implements Initializable {
+//public class EmployeeController implements Initializable {
+public class EmployeeController extends AbstractTemplateController {
     
     @Autowired
     private EmployeeService employeeService;
@@ -54,11 +55,6 @@ public class EmployeeController implements Initializable {
     
     @FXML
     private TableColumn<Employee, String> colStartDate;
-    
-    
-    @Autowired
-    @Lazy
-    private FXMLSceneManager sceneManager;
     
     private ObservableList<Employee> empList = FXCollections.observableArrayList();
     
@@ -107,9 +103,5 @@ public class EmployeeController implements Initializable {
         employeeService.save(emp);
         
     }
-        
-    @FXML
-    private void handleAssetVBoxClick() throws IOException{
-        sceneManager.switchScene(ViewResolver.ASSETS);
-    }
+
 }

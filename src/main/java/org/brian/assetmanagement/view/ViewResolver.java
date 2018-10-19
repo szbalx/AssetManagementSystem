@@ -22,6 +22,17 @@ public enum ViewResolver {
             return "/Dashboard.fxml";
         }
     },
+    VENDORS {
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("vendor.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/Vendors.fxml";
+        }
+    },
     ASSETS {
         @Override
         public String getTitle() {

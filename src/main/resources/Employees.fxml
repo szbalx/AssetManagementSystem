@@ -26,7 +26,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER" layoutX="442.0" layoutY="10.0" prefHeight="134.0" prefWidth="155.0">
+            <VBox alignment="CENTER" layoutX="442.0" layoutY="10.0" onMouseClicked="#handleDashboardVBoxClick" prefHeight="134.0" prefWidth="155.0">
                <children>
                   <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="60" wrappingWidth="56.14285755157471" />
                   <Label styleClass="mylabel" stylesheets="@css/styles.css" text="Dashboard" textFill="WHITE" />
@@ -38,13 +38,13 @@
                   <Label styleClass="mylabel" stylesheets="@css/styles.css" text="Assets" textFill="WHITE" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" layoutX="766.0" layoutY="10.0" prefHeight="134.0" prefWidth="155.0">
+            <VBox alignment="CENTER" layoutX="766.0" layoutY="10.0" onMouseClicked="#handleEmployeeVBoxClick" prefHeight="134.0" prefWidth="155.0">
                <children>
                   <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="60" wrappingWidth="56.14285755157471" />
                   <Label styleClass="mylabel" stylesheets="@css/styles.css" text="Employees" textFill="WHITE" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" layoutX="766.0" layoutY="10.0" prefHeight="134.0" prefWidth="155.0">
+            <VBox alignment="CENTER" layoutX="766.0" layoutY="10.0" onMouseClicked="#handleVendorsVBoxClick" prefHeight="134.0" prefWidth="155.0">
                <children>
                   <FontAwesomeIconView fill="WHITE" glyphName="TRUCK" size="60" wrappingWidth="56.14285755157471" />
                   <Label styleClass="mylabel" stylesheets="@css/styles.css" text="Vendors" textFill="WHITE" />

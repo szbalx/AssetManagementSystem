@@ -9,15 +9,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import org.brian.assetmanagement.config.FXMLSceneManager;
 import org.brian.assetmanagement.view.ViewResolver;
+import org.slf4j.Logger;
+import static org.slf4j.LoggerFactory.getLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Controller;
  * @author Kavitha
  */
 @Controller
-public class DashboardController implements Initializable {
+public class DashboardController extends AbstractTemplateController {
 
     @FXML
     private Hyperlink viewAsset;
@@ -59,77 +59,43 @@ public class DashboardController implements Initializable {
     @FXML
     private VBox vVBox;
 
-    @Autowired
-    @Lazy
-    private FXMLSceneManager sceneManager;
+
+    private static final Logger LOG = getLogger(DashboardController.class);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Facade pattern implemented here. Dashboard is the facade or interface which gives you a way to interract with multiple controllers.
-        // once scene is switched, the corresponding controller takes over the control from dashboard.
-        viewAsset.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                sceneManager.switchScene(ViewResolver.ASSETS);
-            }
-        });
-        addNewAsset.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                sceneManager.switchScene(ViewResolver.ASSET_DETAILS);
-            }
-        });
-        viewEmployee.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                sceneManager.switchScene(ViewResolver.EMPLOYEES);
-            }
-        });
-        dVBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                sceneManager.switchScene(ViewResolver.DASHBOARD);
-            }
-        });
-        aVBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                sceneManager.switchScene(ViewResolver.ASSETS);
-            }
-        });
-        eVBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                sceneManager.switchScene(ViewResolver.EMPLOYEES);
-            }
-        });
-        // the following pages will be shown once they are implemented.
-        // for the time being, redirection is done to the same page.
-        addNewEmployee.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                sceneManager.switchScene(ViewResolver.DASHBOARD);
-            }
-        });
-        viewVendor.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                sceneManager.switchScene(ViewResolver.DASHBOARD);
-            }
-        });
-        addNewVendor.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                sceneManager.switchScene(ViewResolver.DASHBOARD);
-            }
-        });
 
-        vVBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                sceneManager.switchScene(ViewResolver.DASHBOARD);
-            }
-        });
     }
 
+    @FXML
+    public void handleHyperLinkForward(ActionEvent event) throws IOException {
+        // Facade pattern implemented here. Dashboard is the facade or interface which gives you a way to interract with multiple controllers.
+        // once scene is switched, the corresponding controller takes over the control from dashboard.
+        Hyperlink currentLink = (Hyperlink) event.getSource();
+        LOG.info("inside handleHyperLinkForward. Event trigerred from: " + currentLink.getText());
+        delegateToFacade(currentLink.getText());
+    }
+
+    private void delegateToFacade(String sourceName) {
+        switch (sourceName) {
+            case "View Assets":
+                sceneManager.switchScene(ViewResolver.ASSETS);
+                break;
+            case "Add New Asset":
+                sceneManager.switchScene(ViewResolver.ASSET_DETAILS);
+                break;
+            case "View Employees":
+                sceneManager.switchScene(ViewResolver.EMPLOYEES);
+                break;
+            case "Add New Employee":
+                // will add corresponding file once created.
+                break;
+            case "View Vendors":
+                sceneManager.switchScene(ViewResolver.VENDORS);
+                break;
+            case "Add New Vendor":
+                // will add corresponding file once created.
+                break;
+        }
+    }
 }

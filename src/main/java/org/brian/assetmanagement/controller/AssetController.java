@@ -31,7 +31,7 @@ import org.springframework.stereotype.Controller;
  * @author Kavitha
  */
 @Controller
-public class AssetController implements Initializable{
+public class AssetController extends AbstractTemplateController{
     
     @FXML
     private TableView<Asset> assetTable;
@@ -56,10 +56,6 @@ public class AssetController implements Initializable{
     
     @Autowired
     private AssetService assetService;
-    
-    @Autowired
-    @Lazy
-    private FXMLSceneManager sceneManager;
     
     private ObservableList<Asset> assetList = FXCollections.observableArrayList();
 
@@ -111,9 +107,4 @@ public class AssetController implements Initializable{
         assetService.save(asset);
     }
     
-        
-    @FXML
-    private void handleEmployeesClick() throws IOException{
-        sceneManager.switchScene(ViewResolver.EMPLOYEES);
-    }
 }
