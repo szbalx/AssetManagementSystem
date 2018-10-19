@@ -11,6 +11,17 @@ import java.util.ResourceBundle;
  */
 public enum ViewResolver {
 
+    DASHBOARD {
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("dashboard.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/Dashboard.fxml";
+        }
+    },
     ASSETS {
         @Override
         public String getTitle() {

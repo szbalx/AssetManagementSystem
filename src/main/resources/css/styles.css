@@ -13,3 +13,9 @@
 .table-cell{
     -fx-alignment: CENTER;
 }
+
+  .mylabel:hover {
+    -fx-text-fill: #01c69f;
+    -fx-font-style: italic;
+    -fx-cursor: hand;
+  }

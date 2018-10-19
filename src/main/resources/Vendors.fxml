@@ -54,12 +54,12 @@
       </HBox>
       <HBox layoutX="-5.0" layoutY="134.0" prefHeight="15.0" prefWidth="911.0" styleClass="child" stylesheets="@css/styles.css">
          <children>
-            <FontAwesomeIconView glyphName="BARCODE" size="35" wrappingWidth="34.0">
+            <FontAwesomeIconView glyphName="TRUCK" size="35" wrappingWidth="34.0">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
             </FontAwesomeIconView>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="74.0" text="Assets">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="87.0" text="Vendors">
                <font>
                   <Font size="18.0" />
                </font>
@@ -71,12 +71,11 @@
          <children>
             <TableView fx:id="assetTable" prefHeight="481.0" prefWidth="920.0">
               <columns>
-                <TableColumn fx:id="colId" prefWidth="112.0" text="ID" />
-                <TableColumn fx:id="colType" prefWidth="149.0" text="Type" />
-                  <TableColumn fx:id="colManufacturer" prefWidth="143.0" text="Manufacturer" />
-                  <TableColumn fx:id="colModel" prefWidth="155.0" text="Model" />
-                  <TableColumn fx:id="colSerial" prefWidth="156.0" text="Serial" />
-                  <TableColumn fx:id="colAssignedTo" prefWidth="195.0" text="Assigned To" />
+                <TableColumn fx:id="colId" prefWidth="152.0" text="Vendor ID" />
+                <TableColumn fx:id="colType" prefWidth="151.0" text="Name" />
+                  <TableColumn fx:id="colModel" prefWidth="199.0" text="Phone Number" />
+                  <TableColumn fx:id="colSerial" prefWidth="243.0" text="Email" />
+                  <TableColumn fx:id="colAssignedTo" prefWidth="165.0" text="Vendor Rep" />
               </columns>
             </TableView>
          </children>
