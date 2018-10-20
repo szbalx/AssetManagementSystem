@@ -5,7 +5,6 @@
  */
 package org.brian.assetmanagement.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -13,7 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,7 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.brian.assetmanagement.bean.Asset;
 import org.brian.assetmanagement.config.FXMLSceneManager;
 import org.brian.assetmanagement.service.AssetService;
-import org.brian.assetmanagement.view.ViewResolver;
+import org.slf4j.Logger;
+import static org.slf4j.LoggerFactory.getLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -32,6 +31,10 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 public class AssetController extends AbstractTemplateController{
+    private static final Logger LOG = getLogger(AssetController.class);
+        
+    @Autowired
+    private AssetService assetService;
     
     @FXML
     private TableView<Asset> assetTable;
@@ -53,14 +56,17 @@ public class AssetController extends AbstractTemplateController{
     
     @FXML
     private TableColumn<Asset, String> colAssignedTo;
+
     
     @Autowired
-    private AssetService assetService;
+    @Lazy
+    private FXMLSceneManager sceneManager;
     
     private ObservableList<Asset> assetList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        LOG.info("Inside AssetController::initialize");
         assetTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         setTableColumnProperties();
         populateAssets();

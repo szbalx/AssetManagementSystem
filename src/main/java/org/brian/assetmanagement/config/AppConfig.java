@@ -10,8 +10,10 @@ import java.util.ResourceBundle;
 import javafx.stage.Stage;
 import org.brian.assetmanagement.service.AssetService;
 import org.brian.assetmanagement.service.EmployeeService;
+import org.brian.assetmanagement.service.VendorService;
 import org.brian.assetmanagement.service.impl.AssetServiceImpl;
 import org.brian.assetmanagement.service.impl.EmployeeServiceImpl;
+import org.brian.assetmanagement.service.impl.VendorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -34,10 +36,6 @@ public class AppConfig {
     @Autowired
     JavaFXLoaderUtil springFXMLLoader;
 
-    /**
-     * Added to ensure that the service is available before controller invokes
-     * fxml stage setup
-     */
     @Bean
     public AssetService assetService() {
         return new AssetServiceImpl();
@@ -48,6 +46,11 @@ public class AppConfig {
         return new EmployeeServiceImpl();
     }
 
+    @Bean
+    public VendorService vendorService() {
+        return new VendorServiceImpl();
+    }
+    
     @Bean
     public ResourceBundle resourceBundle() {
         return ResourceBundle.getBundle("Bundle");

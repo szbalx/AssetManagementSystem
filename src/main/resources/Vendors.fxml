@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="667.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.brian.assetmanagement.controller.AssetController">
+<AnchorPane id="AnchorPane" prefHeight="667.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.brian.assetmanagement.controller.VendorController">
    <children>
       <HBox alignment="TOP_RIGHT" layoutX="-5.0" prefHeight="134.0" prefWidth="911.0" styleClass="parent" stylesheets="@css/styles.css">
          <children>
@@ -26,25 +26,25 @@
                   </Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER" layoutX="442.0" layoutY="10.0" prefHeight="134.0" prefWidth="155.0">
+            <VBox alignment="CENTER" layoutX="442.0" layoutY="10.0" onMouseClicked="#handleDashboardVBoxClick" prefHeight="134.0" prefWidth="155.0">
                <children>
                   <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="60" wrappingWidth="56.14285755157471" />
                   <Label styleClass="mylabel" stylesheets="@css/styles.css" text="Dashboard" textFill="WHITE" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" layoutX="766.0" layoutY="10.0" prefHeight="134.0" prefWidth="155.0">
+            <VBox alignment="CENTER" layoutX="766.0" layoutY="10.0" onMouseClicked="#handleAssetVBoxClick" prefHeight="134.0" prefWidth="155.0">
                <children>
                   <FontAwesomeIconView fill="WHITE" glyphName="BARCODE" size="60" wrappingWidth="56.14285755157471" />
                   <Label styleClass="mylabel" stylesheets="@css/styles.css" text="Assets" textFill="WHITE" />
                </children>
             </VBox>
-            <VBox fx:id="employeesVBox" alignment="CENTER" layoutX="766.0" layoutY="10.0" onMouseClicked="#handleEmployeesClick" prefHeight="134.0" prefWidth="155.0">
+            <VBox fx:id="employeesVBox" alignment="CENTER" layoutX="766.0" layoutY="10.0" onMouseClicked="#handleEmployeeVBoxClick" prefHeight="134.0" prefWidth="155.0">
                <children>
                   <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="60" wrappingWidth="56.14285755157471" />
                   <Label styleClass="mylabel" stylesheets="@css/styles.css" text="Employees" textFill="WHITE" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" layoutX="766.0" layoutY="10.0" prefHeight="134.0" prefWidth="155.0">
+            <VBox alignment="CENTER" layoutX="766.0" layoutY="10.0" onMouseClicked="#handleVendorsVBoxClick" prefHeight="134.0" prefWidth="155.0">
                <children>
                   <FontAwesomeIconView fill="WHITE" glyphName="TRUCK" size="60" wrappingWidth="56.14285755157471" />
                   <Label styleClass="mylabel" stylesheets="@css/styles.css" text="Vendors" textFill="WHITE" />
@@ -69,13 +69,13 @@
       <HBox layoutX="-5.0" layoutY="170.0" prefHeight="15.0" prefWidth="911.0" styleClass="parent" stylesheets="@css/styles.css" />
       <HBox layoutX="-5.0" layoutY="185.0" prefHeight="481.0" prefWidth="911.0" styleClass="child" stylesheets="@css/styles.css">
          <children>
-            <TableView fx:id="assetTable" prefHeight="481.0" prefWidth="920.0">
+            <TableView fx:id="vendorTable" prefHeight="481.0" prefWidth="920.0">
               <columns>
-                <TableColumn fx:id="colId" prefWidth="152.0" text="Vendor ID" />
-                <TableColumn fx:id="colType" prefWidth="151.0" text="Name" />
-                  <TableColumn fx:id="colModel" prefWidth="199.0" text="Phone Number" />
-                  <TableColumn fx:id="colSerial" prefWidth="243.0" text="Email" />
-                  <TableColumn fx:id="colAssignedTo" prefWidth="165.0" text="Vendor Rep" />
+                <TableColumn fx:id="colVendorId" prefWidth="152.0" text="Vendor ID" />
+                <TableColumn fx:id="colName" prefWidth="151.0" text="Name" />
+                  <TableColumn fx:id="colPhoneNum" prefWidth="199.0" text="Phone Number" />
+                  <TableColumn fx:id="colEmail" prefWidth="243.0" text="Email" />
+                  <TableColumn fx:id="colVendorRep" prefWidth="165.0" text="Vendor Rep" />
               </columns>
             </TableView>
          </children>

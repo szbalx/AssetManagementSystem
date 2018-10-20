@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.brian.assetmanagement.config.FXMLSceneManager;
 import org.brian.assetmanagement.view.ViewResolver;
+import org.slf4j.Logger;
+import static org.slf4j.LoggerFactory.getLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -24,29 +26,40 @@ import org.springframework.stereotype.Controller;
  * Reduces redundant code across controllers.
  */
 @Controller
-public abstract class AbstractTemplateController implements Initializable {
+public class AbstractTemplateController implements Initializable {
 
+    private static final Logger LOG = getLogger(AbstractTemplateController.class);
     @Autowired
     @Lazy
-    protected FXMLSceneManager sceneManager;
+    private FXMLSceneManager sceneManager;
 
     @FXML
-    private void handleDashboardVBoxClick() throws IOException {
+    public void handleDashboardVBoxClick() throws IOException {
+        LOG.info("Inside AbstractTemplateController::handleDashboardVBoxClick");
         sceneManager.switchScene(ViewResolver.DASHBOARD);
     }
 
     @FXML
-    private void handleAssetVBoxClick() throws IOException {
+    public void handleAssetVBoxClick() throws IOException {
+        LOG.info("Inside AbstractTemplateController::handleAssetVBoxClick");
         sceneManager.switchScene(ViewResolver.ASSETS);
     }
 
     @FXML
-    private void handleEmployeeVBoxClick() throws IOException {
+    public void handleEmployeeVBoxClick() throws IOException {
+        LOG.info("Inside AbstractTemplateController::handleEmployeeVBoxClick");
         sceneManager.switchScene(ViewResolver.EMPLOYEES);
     }
 
     @FXML
-    private void handleVendorsVBoxClick() throws IOException {
+    public void handleVendorsVBoxClick() throws IOException {
+        LOG.info("Inside AbstractTemplateController::handleVendorsVBoxClick");
         sceneManager.switchScene(ViewResolver.VENDORS);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //  nothing to add here
+        LOG.info("Inside AbstractTemplateController::initialize");
     }
 }

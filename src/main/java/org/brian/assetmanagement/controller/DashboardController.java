@@ -10,10 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import org.brian.assetmanagement.config.FXMLSceneManager;
 import org.brian.assetmanagement.view.ViewResolver;
 import org.slf4j.Logger;
@@ -29,42 +26,16 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class DashboardController extends AbstractTemplateController {
 
-    @FXML
-    private Hyperlink viewAsset;
-
-    @FXML
-    private Hyperlink addNewAsset;
-
-    @FXML
-    private Hyperlink viewEmployee;
-
-    @FXML
-    private Hyperlink addNewEmployee;
-
-    @FXML
-    private Hyperlink viewVendor;
-
-    @FXML
-    private Hyperlink addNewVendor;
-
-    @FXML
-    private VBox dVBox;
-
-    @FXML
-    private VBox aVBox;
-
-    @FXML
-    private VBox eVBox;
-
-    @FXML
-    private VBox vVBox;
-
-
     private static final Logger LOG = getLogger(DashboardController.class);
+
+    @Autowired
+    @Lazy
+    private FXMLSceneManager sceneManager;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        LOG.info("Inside DashboardController::initialize");
     }
 
     @FXML
@@ -82,19 +53,22 @@ public class DashboardController extends AbstractTemplateController {
                 sceneManager.switchScene(ViewResolver.ASSETS);
                 break;
             case "Add New Asset":
-                sceneManager.switchScene(ViewResolver.ASSET_DETAILS);
+                // will add corresponding file once completed.
+                sceneManager.switchScene(ViewResolver.DASHBOARD);
                 break;
             case "View Employees":
                 sceneManager.switchScene(ViewResolver.EMPLOYEES);
                 break;
             case "Add New Employee":
-                // will add corresponding file once created.
+                // will add corresponding file once completed.
+                sceneManager.switchScene(ViewResolver.DASHBOARD);
                 break;
             case "View Vendors":
                 sceneManager.switchScene(ViewResolver.VENDORS);
                 break;
             case "Add New Vendor":
-                // will add corresponding file once created.
+                // will add corresponding file once completed.
+                sceneManager.switchScene(ViewResolver.DASHBOARD);
                 break;
         }
     }
