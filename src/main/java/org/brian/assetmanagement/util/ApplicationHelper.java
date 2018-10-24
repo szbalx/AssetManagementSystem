@@ -22,7 +22,7 @@ public class ApplicationHelper {
      * @param empty
      * @return
      */
-    private boolean emptyValidation(String field, boolean empty) {
+    public static boolean emptyValidation(String field, boolean empty) {
         if (!empty) {
             return true;
         } else {
@@ -41,7 +41,7 @@ public class ApplicationHelper {
      * @param pattern
      * @return
      */
-    private static boolean validate(String field, String value, String pattern) {
+    public static boolean validate(String field, String value, String pattern) {
         if (!value.isEmpty()) {
             Pattern p = Pattern.compile(pattern);
             Matcher m = p.matcher(value);
@@ -62,7 +62,7 @@ public class ApplicationHelper {
      * @param field
      * @param empty 
      */
-    private static void validationAlert(String field, boolean empty) {
+    public static void validationAlert(String field, boolean empty) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Validation Error");
         alert.setHeaderText(null);

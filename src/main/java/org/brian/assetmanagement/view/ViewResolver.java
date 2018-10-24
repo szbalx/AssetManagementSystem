@@ -55,6 +55,28 @@ public enum ViewResolver {
             return "/AssetDetails.fxml";
         }
     },
+    EMPLOYEE_DETAILS {
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("employeedetails.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/EmployeeDetails.fxml";
+        }
+    },
+    VENDOR_DETAILS {
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("vendordetails.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/VendorDetails.fxml";
+        }
+    },
     EMPLOYEES {
         @Override
         public String getTitle() {
