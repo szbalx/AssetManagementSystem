@@ -5,6 +5,7 @@
  */
 package org.brian.assetmanagement.util;
 
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.scene.control.Alert;
@@ -73,5 +74,9 @@ public class ApplicationHelper {
         }
 
         alert.showAndWait();
+    }
+    
+    public static String getAlertMessage(String code){
+        return ResourceBundle.getBundle("AlertMessages").getString(code);
     }
 }

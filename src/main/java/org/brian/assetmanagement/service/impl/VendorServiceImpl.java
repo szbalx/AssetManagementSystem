@@ -46,5 +46,10 @@ public class VendorServiceImpl implements VendorService{
     public List<Vendor> getAll() {
         return vendorRepo.findAll();
     }
+
+    @Override
+    public void deleteInBatch(List<Vendor> selectedVendors) {
+        vendorRepo.deleteInBatch(selectedVendors);
+    }
     
 }

@@ -2,6 +2,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -69,16 +70,21 @@
       <HBox layoutX="-5.0" layoutY="170.0" prefHeight="15.0" prefWidth="911.0" styleClass="parent" stylesheets="@css/styles.css" />
       <HBox layoutX="-5.0" layoutY="185.0" prefHeight="481.0" prefWidth="911.0" styleClass="child" stylesheets="@css/styles.css">
          <children>
-            <TableView fx:id="assetTable" prefHeight="481.0" prefWidth="920.0">
-              <columns>
-                <TableColumn fx:id="colId" prefWidth="112.0" text="ID" />
-                <TableColumn fx:id="colType" prefWidth="149.0" text="Type" />
-                  <TableColumn fx:id="colManufacturer" prefWidth="143.0" text="Manufacturer" />
-                  <TableColumn fx:id="colModel" prefWidth="155.0" text="Model" />
-                  <TableColumn fx:id="colSerial" prefWidth="156.0" text="Serial" />
-                  <TableColumn fx:id="colAssignedTo" prefWidth="195.0" text="Assigned To" />
-              </columns>
-            </TableView>
+            <VBox alignment="CENTER_RIGHT">
+               <children>
+                  <Button mnemonicParsing="false" text="Delete" />
+                  <TableView fx:id="assetTable" prefHeight="481.0" prefWidth="920.0">
+                    <columns>
+                      <TableColumn fx:id="colId" prefWidth="112.0" text="ID" />
+                      <TableColumn fx:id="colType" prefWidth="149.0" text="Type" />
+                        <TableColumn fx:id="colManufacturer" prefWidth="143.0" text="Manufacturer" />
+                        <TableColumn fx:id="colModel" prefWidth="155.0" text="Model" />
+                        <TableColumn fx:id="colSerial" prefWidth="156.0" text="Serial" />
+                        <TableColumn fx:id="colAssignedTo" prefWidth="195.0" text="Assigned To" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
          </children>
       </HBox>
    </children>
