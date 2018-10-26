@@ -84,27 +84,8 @@ public class VendorController extends AbstractTemplateController {
 
     private void populateVendors() {
         vendorList.clear();
-        createDummyVendors();
         vendorList.addAll(vendorService.getAll());
         vendorTable.setItems(vendorList);
-    }
-
-    private void createDummyVendors() {
-        Vendor vendor = new Vendor();
-        vendor.setVendorID(1L);
-        vendor.setName("Acme");
-        vendor.setPhoneNumber("555-555-5555");
-        vendor.setEmail("acme@email.com");
-        vendor.setVendorRep("Rep Name");
-        vendorService.save(vendor);
-        vendor = new Vendor();
-        vendor.setVendorID(2L);
-        vendor.setName("ABC Cleaning");
-        vendor.setPhoneNumber("555-555-5554");
-        vendor.setEmail("abcclean@email.com");
-        vendor.setVendorRep("Rep Name");
-        vendorService.save(vendor);
-        
     }
 
 }

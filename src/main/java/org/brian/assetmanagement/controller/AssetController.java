@@ -80,7 +80,6 @@ public class AssetController extends AbstractTemplateController{
 
     private void populateAssets() {
         assetList.clear();
-        createDummyAssets();
         assetList.addAll(assetService.getAll());
         assetTable.setItems(assetList);
     }
@@ -92,25 +91,6 @@ public class AssetController extends AbstractTemplateController{
         colModel.setCellValueFactory(new PropertyValueFactory<>("model"));
         colSerial.setCellValueFactory(new PropertyValueFactory<>("serial"));
         colAssignedTo.setCellValueFactory(new PropertyValueFactory<>("assignedTo"));
-    }
-
-    private void createDummyAssets() {
-        Asset asset = new Asset();
-        asset.setId(1L);
-        asset.setType("Laptop");
-        asset.setManufacturer("Lenovo");
-        asset.setModel("00001");
-        asset.setSerial("24647654725");
-        asset.setAssignedTo("Mark Smith");
-        assetService.save(asset);
-        asset = new Asset();
-        asset.setId(2L);
-        asset.setType("Laptop");
-        asset.setManufacturer("Lenovo");
-        asset.setModel("asdf123");
-        asset.setSerial("00253242345456");
-        asset.setAssignedTo("Brian Stoiber");
-        assetService.save(asset);
     }
     
 }

@@ -53,22 +53,19 @@ public class DashboardController extends AbstractTemplateController {
                 sceneManager.switchScene(ViewResolver.ASSETS);
                 break;
             case "Add New Asset":
-                // will add corresponding file once completed.
                 sceneManager.switchScene(ViewResolver.ASSET_DETAILS);
                 break;
             case "View Employees":
                 sceneManager.switchScene(ViewResolver.EMPLOYEES);
                 break;
             case "Add New Employee":
-                // will add corresponding file once completed.
-                sceneManager.switchScene(ViewResolver.DASHBOARD);
+                sceneManager.switchScene(ViewResolver.EMPLOYEE_DETAILS);
                 break;
             case "View Vendors":
                 sceneManager.switchScene(ViewResolver.VENDORS);
                 break;
             case "Add New Vendor":
-                // will add corresponding file once completed.
-                sceneManager.switchScene(ViewResolver.DASHBOARD);
+                sceneManager.switchScene(ViewResolver.VENDOR_DETAILS);
                 break;
         }
     }

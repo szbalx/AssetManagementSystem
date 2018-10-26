@@ -84,27 +84,9 @@ public class EmployeeController extends AbstractTemplateController {
 
     private void populateEmployees() {
         empList.clear();
-        createDummyEmployees();
         empList.addAll(employeeService.getAll());
         employeeTable.setItems(empList);
     }
 
-    private void createDummyEmployees() {
-        Employee emp = new Employee();
-        emp.setEmployeeID(1L);
-        emp.setName("Brian Stoiber");
-        emp.setPhoneNumber("555-555-5555");
-        emp.setEmail("brian@email.com");
-        emp.setStartDate("1/1/2000");
-        employeeService.save(emp);
-        emp = new Employee();
-        emp.setEmployeeID(2L);
-        emp.setName("Dan Louis");
-        emp.setPhoneNumber("555-555-5554");
-        emp.setEmail("dan@email.com");
-        emp.setStartDate("1/1/2000");
-        employeeService.save(emp);
-        
-    }
 
 }

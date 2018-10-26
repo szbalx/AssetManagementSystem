@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="667.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.brian.assetmanagement.controller.AssetDetailsController">
+<AnchorPane id="AnchorPane" prefHeight="667.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.brian.assetmanagement.controller.EmployeeDetailsController">
    <children>
       <HBox alignment="TOP_RIGHT" layoutX="-5.0" prefHeight="134.0" prefWidth="911.0" styleClass="parent" stylesheets="@css/styles.css">
          <children>
@@ -77,7 +77,7 @@
                         <Insets left="30.0" top="30.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField prefHeight="10.0" prefWidth="100.0" promptText="Employee ID">
+                  <TextField fx:id="empId" prefHeight="10.0" prefWidth="100.0" promptText="Employee ID">
                      <opaqueInsets>
                         <Insets left="30.0" top="30.0" />
                      </opaqueInsets>
@@ -90,7 +90,7 @@
                         <Insets left="30.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField layoutX="40.0" layoutY="71.0" prefHeight="10.0" prefWidth="100.0" promptText="Name">
+                  <TextField fx:id="name" layoutX="40.0" layoutY="71.0" prefHeight="10.0" prefWidth="100.0" promptText="Name">
                      <opaqueInsets>
                         <Insets left="30.0" top="30.0" />
                      </opaqueInsets>
@@ -103,7 +103,7 @@
                         <Insets left="30.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField layoutX="10.0" layoutY="123.0" prefHeight="10.0" prefWidth="100.0" promptText="Phone Number">
+                  <TextField fx:id="phoneNumber" layoutX="10.0" layoutY="123.0" prefHeight="10.0" prefWidth="100.0" promptText="Phone Number">
                      <opaqueInsets>
                         <Insets left="30.0" top="30.0" />
                      </opaqueInsets>
@@ -120,7 +120,7 @@
                         <Insets left="30.0" top="30.0" />
                      </VBox.margin>
                   </Label>
-                  <DatePicker prefHeight="31.0" prefWidth="389.0">
+                  <DatePicker fx:id="startDate" prefHeight="31.0" prefWidth="389.0">
                      <VBox.margin>
                         <Insets bottom="5.0" left="30.0" top="5.0" />
                      </VBox.margin>
@@ -133,7 +133,7 @@
                         <Insets left="30.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField layoutX="40.0" layoutY="71.0" prefHeight="10.0" prefWidth="100.0" promptText="somebody@example.com">
+                  <TextField fx:id="email" layoutX="40.0" layoutY="71.0" prefHeight="10.0" prefWidth="100.0" promptText="somebody@example.com">
                      <opaqueInsets>
                         <Insets left="30.0" top="30.0" />
                      </opaqueInsets>
@@ -143,12 +143,12 @@
                   </TextField>
                   <HBox alignment="CENTER">
                      <children>
-                        <Button mnemonicParsing="false" text="Reset">
+                        <Button fx:id="resetBtn" mnemonicParsing="false" onAction="#reset" text="Reset">
                            <HBox.margin>
                               <Insets right="70.0" top="30.0" />
                            </HBox.margin>
                         </Button>
-                        <Button layoutX="203.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Save" textFill="WHITE">
+                        <Button fx:id="saveBtn" layoutX="203.0" layoutY="10.0" mnemonicParsing="false" onAction="#saveEmployee" style="-fx-background-color: green;" text="Save" textFill="WHITE">
                            <HBox.margin>
                               <Insets top="30.0" />
                            </HBox.margin>

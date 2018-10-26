@@ -91,6 +91,7 @@ public class AssetDetailsController extends AbstractTemplateController {
                 oldAsset.setManufacturer(manufacturer.getText());
                 oldAsset.setModel(model.getText());
                 oldAsset.setSerial(serialNumber.getText());
+                oldAsset.setAssignedTo(assignedTo.getText());
                 oldAsset.setPurchaseDate(purchaseDate.getValue());
                 oldAsset.setWarranty(warranty.getText());
                 oldAsset.setOs(os.getText());
@@ -103,6 +104,7 @@ public class AssetDetailsController extends AbstractTemplateController {
                 asset.setManufacturer(manufacturer.getText());
                 asset.setModel(model.getText());
                 asset.setSerial(serialNumber.getText());
+                asset.setAssignedTo(assignedTo.getText());
                 asset.setPurchaseDate(purchaseDate.getValue());
                 asset.setWarranty(warranty.getText());
                 asset.setOs(os.getText());
@@ -116,16 +118,18 @@ public class AssetDetailsController extends AbstractTemplateController {
     }
 
     private boolean validateAssetValues() {
-        return validate("id", id.getText(), "^[\\d\\s]+$")
-                && validate("type", type.getText(), "^[\\w\\d]+$")
-                && validate("manufacturer", manufacturer.getText(), "^[\\w\\d\\s]+$")
-                && validate("model", model.getText(), "^[\\w\\d-\\s]+$")
-                && validate("serialNumber", serialNumber.getText(), "^[\\w\\d]+$")
+
+        return validate("id", id.getText(), "^[\\d\\s]+$") &&
+                validate("type", type.getText(), "^[\\w]+$")
+                && validate("manufacturer", manufacturer.getText(), "^[\\w\\s]+$")
+                && validate("model", model.getText(), "^[\\w-\\s]+$")
+                && validate("serialNumber", serialNumber.getText(), "^[\\w]+$")
+                && validate("assigned to", assignedTo.getText(), "^[A-Za-z\\s]+$")
                 && emptyValidation("purchaseDate", purchaseDate.getEditor().getText().isEmpty())
-                && validate("warranty", warranty.getText(), "^[\\w\\d]+$")
-                && validate("os", os.getText(), "^[\\w\\d\\s]+$")
-                && validate("hdSize", hdSize.getText(), "^[\\w\\s\\d]+$")
-                && validate("ram", ram.getText(), "^[\\w\\s\\d]+$");
+                && validate("warranty", warranty.getText(), "^[\\w\\s]+$")
+                && validate("os", os.getText(), "^[\\w\\s]+$")
+                && validate("hdSize", hdSize.getText(), "^[\\w\\s]+$")
+                && validate("ram", ram.getText(), "^[\\w\\s]+$");
     }
 
     @FXML
