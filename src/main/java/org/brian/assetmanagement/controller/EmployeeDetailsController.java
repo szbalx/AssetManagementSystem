@@ -9,11 +9,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import org.brian.assetmanagement.bean.Employee;
 import org.brian.assetmanagement.service.EmployeeService;
+import org.brian.assetmanagement.util.AlertFactory;
 import static org.brian.assetmanagement.util.ApplicationHelper.validate;
 import static org.brian.assetmanagement.util.ApplicationHelper.emptyValidation;
 import org.slf4j.Logger;
@@ -85,6 +87,7 @@ public class EmployeeDetailsController extends AbstractTemplateController {
                 employeeService.save(emp);
             }
             refreshForm();
+            showCreateAlert();
         }
 
     }
@@ -103,5 +106,10 @@ public class EmployeeDetailsController extends AbstractTemplateController {
                 && validate("phoneNumber", phoneNumber.getText(), "^[\\d]+$")
                 && validate("email", email.getText(), "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")
                 && emptyValidation("startDate", startDate.getEditor().getText().isEmpty());
+    }
+
+    private void showCreateAlert() {
+        Alert alert = AlertFactory.getAlert(Alert.AlertType.INFORMATION, "CREATED_EMPLOYEE");
+        alert.showAndWait();
     }
 }

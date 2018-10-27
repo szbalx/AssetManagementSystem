@@ -9,11 +9,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import static org.brian.assetmanagement.util.ApplicationHelper.validate;
 import javafx.scene.control.TextField;
 import org.brian.assetmanagement.bean.Vendor;
 import org.brian.assetmanagement.service.VendorService;
+import org.brian.assetmanagement.util.AlertFactory;
 import org.slf4j.Logger;
 import static org.slf4j.LoggerFactory.getLogger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ import org.springframework.stereotype.Controller;
 public class VendorDetailsController extends AbstractTemplateController {
 
     private static final Logger LOG = getLogger(VendorDetailsController.class);
-    
+
     @Autowired
     private VendorService vendorService;
 
@@ -66,7 +68,7 @@ public class VendorDetailsController extends AbstractTemplateController {
     private void saveVendor(ActionEvent event) {
         if (validateVendorDetails()) {
             LOG.info("vendor details validated....inside VendorDetailsController:: saveVendor");
-            if(vendorId.getText()!= null && vendorId.getText().equals("")){
+            if (vendorId.getText() != null && vendorId.getText().equals("")) {
                 Vendor oldVendor = vendorService.getVendor(Long.parseLong(vendorId.getText()));
                 oldVendor.setName(name.getText());
                 oldVendor.setPhoneNumber(phoneNumber.getText());
@@ -83,6 +85,7 @@ public class VendorDetailsController extends AbstractTemplateController {
                 vendorService.save(vendor);
             }
             refreshForm();
+            showCreateAlert();
         }
 
     }
@@ -101,5 +104,10 @@ public class VendorDetailsController extends AbstractTemplateController {
                 && validate("phoneNumber", phoneNumber.getText(), "^[\\d]+$")
                 && validate("email", email.getText(), "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")
                 && validate("vendorRep", vendorRep.getText(), "^[\\w\\s]+$");
+    }
+
+    private void showCreateAlert() {
+        Alert alert = AlertFactory.getAlert(Alert.AlertType.INFORMATION, "CREATED_VENDOR");
+        alert.showAndWait();
     }
 }
