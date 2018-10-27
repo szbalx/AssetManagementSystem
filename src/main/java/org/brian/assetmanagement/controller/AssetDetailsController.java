@@ -6,15 +6,18 @@
 package org.brian.assetmanagement.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import org.brian.assetmanagement.bean.Asset;
 import org.brian.assetmanagement.service.AssetService;
+import org.brian.assetmanagement.service.EmployeeService;
 import org.brian.assetmanagement.util.AlertFactory;
 import static org.brian.assetmanagement.util.ApplicationHelper.emptyValidation;
 import static org.brian.assetmanagement.util.ApplicationHelper.validate;
@@ -35,6 +38,9 @@ public class AssetDetailsController extends AbstractTemplateController {
 
     @Autowired
     private AssetService assetService;
+    
+    @Autowired
+    private EmployeeService employeeService;
 
     @FXML
     private TextField id;
@@ -51,9 +57,9 @@ public class AssetDetailsController extends AbstractTemplateController {
     @FXML
     private TextField serialNumber;
 
+
     @FXML
-    private TextField assignedTo; // TODO: make this a combo box once employee details page is completed successfully. 
-                                  //  to be populated dynamically according to employee table in db.
+    private ComboBox assignedTo;
 
     @FXML
     private DatePicker purchaseDate;
@@ -79,6 +85,11 @@ public class AssetDetailsController extends AbstractTemplateController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LOG.info("inside AssetDetailsController:: initializer");
+        List<String> names = employeeService.getEmployeeNamesOnly();
+        LOG.info("Populating combobox..");
+        assignedTo.getItems().clear();
+        assignedTo.getItems().addAll(names);
+        
     }
 
     @FXML
@@ -93,7 +104,7 @@ public class AssetDetailsController extends AbstractTemplateController {
                 oldAsset.setManufacturer(manufacturer.getText());
                 oldAsset.setModel(model.getText());
                 oldAsset.setSerial(serialNumber.getText());
-                oldAsset.setAssignedTo(assignedTo.getText());
+                oldAsset.setAssignedTo((String) assignedTo.getValue());
                 oldAsset.setPurchaseDate(purchaseDate.getValue());
                 oldAsset.setWarranty(warranty.getText());
                 oldAsset.setOs(os.getText());
@@ -102,11 +113,12 @@ public class AssetDetailsController extends AbstractTemplateController {
                 assetService.save(oldAsset);
             } else {
                 Asset asset = new Asset();
+                asset.setId(Long.parseLong(id.getText()));
                 asset.setType(type.getText());
                 asset.setManufacturer(manufacturer.getText());
                 asset.setModel(model.getText());
                 asset.setSerial(serialNumber.getText());
-                asset.setAssignedTo(assignedTo.getText());
+                asset.setAssignedTo((String) assignedTo.getValue());
                 asset.setPurchaseDate(purchaseDate.getValue());
                 asset.setWarranty(warranty.getText());
                 asset.setOs(os.getText());
@@ -127,7 +139,7 @@ public class AssetDetailsController extends AbstractTemplateController {
                 && validate("manufacturer", manufacturer.getText(), "^[\\w\\s]+$")
                 && validate("model", model.getText(), "^[\\w-\\s]+$")
                 && validate("serialNumber", serialNumber.getText(), "^[\\w]+$")
-                && validate("assigned to", assignedTo.getText(), "^[A-Za-z\\s]+$")
+                // no need to validate values from assignedTo combo box as it is populated from database and not inputted by user.
                 && emptyValidation("purchaseDate", purchaseDate.getEditor().getText().isEmpty())
                 && validate("warranty", warranty.getText(), "^[\\w\\s]+$")
                 && validate("os", os.getText(), "^[\\w\\s]+$")
@@ -146,7 +158,7 @@ public class AssetDetailsController extends AbstractTemplateController {
         manufacturer.clear();
         model.clear();
         serialNumber.clear();
-        assignedTo.clear();
+        assignedTo.getSelectionModel().clearSelection();
         purchaseDate.getEditor().clear();
         warranty.clear();
         os.clear();

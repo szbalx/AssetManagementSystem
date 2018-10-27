@@ -17,5 +17,6 @@ public interface AssetService {
     public Asset getOneAsset(Long id);
     public void delete(Long id);
     public void delete(Asset asset);
-    public List<Asset> getAll();         
+    public List<Asset> getAll();
+    public void deleteInBatch(List<Asset> selectedAssets);
 }

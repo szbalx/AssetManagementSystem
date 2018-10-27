@@ -18,4 +18,6 @@ public interface EmployeeService {
     public void delete(Long employeeId);
     public void delete(Employee employee);
     public List<Employee> getAll();
+    public List<String> getEmployeeNamesOnly();
+    public void deleteInBatch(List<Employee> selectedEmployees);
 }

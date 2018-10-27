@@ -72,7 +72,7 @@
          <children>
             <VBox alignment="CENTER_RIGHT">
                <children>
-                  <Button mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#delete" text="Delete" />
                   <TableView fx:id="assetTable" prefHeight="481.0" prefWidth="920.0">
                     <columns>
                       <TableColumn fx:id="colId" prefWidth="112.0" text="ID" />

@@ -46,5 +46,15 @@ public class EmployeeServiceImpl implements EmployeeService{
     public List<Employee> getAll() {
         return empRepo.findAll();
     }
+
+    @Override
+    public List<String> getEmployeeNamesOnly() {
+        return empRepo.getNameonly();
+    }
+
+    @Override
+    public void deleteInBatch(List<Employee> selectedEmployees) {
+        empRepo.deleteInBatch(selectedEmployees);
+    }
     
 }
