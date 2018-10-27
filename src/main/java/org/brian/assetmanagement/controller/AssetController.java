@@ -20,10 +20,13 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import org.brian.assetmanagement.bean.Asset;
 import org.brian.assetmanagement.config.FXMLSceneManager;
 import org.brian.assetmanagement.service.AssetService;
+import org.brian.assetmanagement.service.EmployeeService;
 import org.brian.assetmanagement.util.AlertFactory;
 import org.slf4j.Logger;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -41,6 +44,9 @@ public class AssetController extends AbstractTemplateController{
         
     @Autowired
     private AssetService assetService;
+    
+    @Autowired
+    private EmployeeService employeeService;
     
     @FXML
     private TableView<Asset> assetTable;
@@ -72,11 +78,25 @@ public class AssetController extends AbstractTemplateController{
     private FXMLSceneManager sceneManager;
     
     private ObservableList<Asset> assetList = FXCollections.observableArrayList();
+    private ObservableList<String> empNames = FXCollections.observableArrayList();
+    private ObservableList<String> assetTypes = FXCollections.observableArrayList(
+            "Laptop",
+            "PC",
+            "Mouse",
+            "Keyboard",
+            "Monitor",
+            "Printer",
+            "Projector",
+            "Docking Station",
+            "Router",
+            "Cable",
+            "Connector");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LOG.info("Inside AssetController::initialize");
         assetTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        assetTable.setEditable(true);
         setTableColumnProperties();
         populateAssets();
     }
@@ -118,10 +138,43 @@ public class AssetController extends AbstractTemplateController{
     private void setTableColumnProperties() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colType.setCellFactory(ComboBoxTableCell.forTableColumn(assetTypes));
         colManufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+        colManufacturer.setCellFactory(TextFieldTableCell.forTableColumn());
         colModel.setCellValueFactory(new PropertyValueFactory<>("model"));
+        colModel.setCellFactory(TextFieldTableCell.forTableColumn());
         colSerial.setCellValueFactory(new PropertyValueFactory<>("serial"));
+        colSerial.setCellFactory(TextFieldTableCell.forTableColumn());
         colAssignedTo.setCellValueFactory(new PropertyValueFactory<>("assignedTo"));
+        empNames.clear();
+        empNames.addAll(employeeService.getEmployeeNamesOnly());
+        colAssignedTo.setCellFactory(ComboBoxTableCell.forTableColumn(empNames));
+ 
     }
     
+    @FXML
+    private void handleEditCommitEvent(TableColumn.CellEditEvent<Asset, String> event){
+        LOG.info("Event trigerred from : " + ((TableColumn)event.getSource()).getId());
+        Asset asset = event.getRowValue();
+        String sourceId = ((TableColumn)event.getSource()).getId();
+        String newValue = event.getNewValue();
+        switch(sourceId){
+            case "colType":
+                asset.setType(newValue);
+                break;
+            case "colManufacturer":
+                asset.setManufacturer(newValue);
+                break;
+            case "colModel":
+                asset.setModel(newValue);
+                break;
+            case "colSerial":
+                asset.setSerial(newValue);
+                break;
+            case "colAssignedTo":
+                asset.setAssignedTo(newValue);
+                break;
+        }
+        assetService.save(asset);
+    }
 }

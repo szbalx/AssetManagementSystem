@@ -8,6 +8,8 @@ package org.brian.assetmanagement.controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -38,7 +40,7 @@ public class AssetDetailsController extends AbstractTemplateController {
 
     @Autowired
     private AssetService assetService;
-    
+
     @Autowired
     private EmployeeService employeeService;
 
@@ -46,7 +48,7 @@ public class AssetDetailsController extends AbstractTemplateController {
     private TextField id;
 
     @FXML
-    private TextField type;
+    private ComboBox type;
 
     @FXML
     private TextField manufacturer;
@@ -56,7 +58,6 @@ public class AssetDetailsController extends AbstractTemplateController {
 
     @FXML
     private TextField serialNumber;
-
 
     @FXML
     private ComboBox assignedTo;
@@ -82,6 +83,19 @@ public class AssetDetailsController extends AbstractTemplateController {
     @FXML
     private Button resetBtn;
 
+    private ObservableList<String> assetTypes = FXCollections.observableArrayList(
+            "Laptop",
+            "PC",
+            "Mouse",
+            "Keyboard",
+            "Monitor",
+            "Printer",
+            "Projector",
+            "Docking Station",
+            "Router",
+            "Cable",
+            "Connector");
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LOG.info("inside AssetDetailsController:: initializer");
@@ -89,7 +103,8 @@ public class AssetDetailsController extends AbstractTemplateController {
         LOG.info("Populating combobox..");
         assignedTo.getItems().clear();
         assignedTo.getItems().addAll(names);
-        
+        type.getItems().addAll(assetTypes);
+
     }
 
     @FXML
@@ -100,7 +115,7 @@ public class AssetDetailsController extends AbstractTemplateController {
             if (id.getText() != null && id.getText().equals("")) {
                 // user gave id explicitly . check in the service whether the asset is already in place and update it. else create new asset.
                 Asset oldAsset = assetService.getOneAsset(Long.parseLong(id.getText()));
-                oldAsset.setType(type.getText());
+                oldAsset.setType((String) type.getValue());
                 oldAsset.setManufacturer(manufacturer.getText());
                 oldAsset.setModel(model.getText());
                 oldAsset.setSerial(serialNumber.getText());
@@ -114,7 +129,7 @@ public class AssetDetailsController extends AbstractTemplateController {
             } else {
                 Asset asset = new Asset();
                 asset.setId(Long.parseLong(id.getText()));
-                asset.setType(type.getText());
+                asset.setType((String) type.getValue());
                 asset.setManufacturer(manufacturer.getText());
                 asset.setModel(model.getText());
                 asset.setSerial(serialNumber.getText());
@@ -134,8 +149,8 @@ public class AssetDetailsController extends AbstractTemplateController {
 
     private boolean validateAssetValues() {
 
-        return validate("id", id.getText(), "^[\\d\\s]+$") &&
-                validate("type", type.getText(), "^[\\w]+$")
+        return validate("id", id.getText(), "^[\\d\\s]+$")
+                // no need to validate values from type combo box as it is populated from the constants specified during assetTypes ObservableList creation
                 && validate("manufacturer", manufacturer.getText(), "^[\\w\\s]+$")
                 && validate("model", model.getText(), "^[\\w-\\s]+$")
                 && validate("serialNumber", serialNumber.getText(), "^[\\w]+$")
@@ -154,7 +169,7 @@ public class AssetDetailsController extends AbstractTemplateController {
 
     private void refreshForm() {
         id.clear();
-        type.clear();
+        type.getSelectionModel().clearSelection();
         manufacturer.clear();
         model.clear();
         serialNumber.clear();
@@ -170,5 +185,5 @@ public class AssetDetailsController extends AbstractTemplateController {
         Alert alert = AlertFactory.getAlert(Alert.AlertType.INFORMATION, "CREATED_ASSET");
         alert.showAndWait();
     }
-    
+
 }
