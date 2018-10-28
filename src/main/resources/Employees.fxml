@@ -76,9 +76,9 @@
                   <TableView fx:id="employeeTable" prefHeight="481.0" prefWidth="920.0">
                     <columns>
                       <TableColumn fx:id="colEmpId" prefWidth="134.0" text="Employee ID" />
-                      <TableColumn fx:id="colEmpName" prefWidth="254.0" text="Name" />
-                        <TableColumn fx:id="colPhoneNum" prefWidth="92.0" text="Phone #" />
-                        <TableColumn fx:id="colEmpEmail" prefWidth="267.0" text="Email" />
+                      <TableColumn fx:id="colEmpName" onEditCommit="#handleEditCommitEvent" prefWidth="254.0" text="Name" />
+                        <TableColumn fx:id="colPhoneNum" onEditCommit="#handleEditCommitEvent" prefWidth="92.0" text="Phone #" />
+                        <TableColumn fx:id="colEmpEmail" onEditCommit="#handleEditCommitEvent" prefWidth="267.0" text="Email" />
                         <TableColumn fx:id="colStartDate" minWidth="0.0" prefWidth="163.0" text="Start Date" />
                     </columns>
                   </TableView>

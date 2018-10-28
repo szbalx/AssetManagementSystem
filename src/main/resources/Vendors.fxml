@@ -76,10 +76,10 @@
                   <TableView fx:id="vendorTable" prefHeight="481.0" prefWidth="920.0">
                     <columns>
                       <TableColumn fx:id="colVendorId" prefWidth="152.0" text="Vendor ID" />
-                      <TableColumn fx:id="colName" prefWidth="151.0" text="Name" />
-                        <TableColumn fx:id="colPhoneNum" prefWidth="199.0" text="Phone Number" />
-                        <TableColumn fx:id="colEmail" prefWidth="243.0" text="Email" />
-                        <TableColumn fx:id="colVendorRep" prefWidth="165.0" text="Vendor Rep" />
+                      <TableColumn fx:id="colName" onEditCommit="#handleEditCommitEvent" prefWidth="151.0" text="Name" />
+                        <TableColumn fx:id="colPhoneNum" onEditCommit="#handleEditCommitEvent" prefWidth="199.0" text="Phone Number" />
+                        <TableColumn fx:id="colEmail" onEditCommit="#handleEditCommitEvent" prefWidth="243.0" text="Email" />
+                        <TableColumn fx:id="colVendorRep" onEditCommit="#handleEditCommitEvent" prefWidth="165.0" text="Vendor Rep" />
                     </columns>
                   </TableView>
                </children>

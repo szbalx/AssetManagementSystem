@@ -23,6 +23,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import org.brian.assetmanagement.bean.Vendor;
 import org.brian.assetmanagement.config.FXMLSceneManager;
 import org.brian.assetmanagement.service.VendorService;
@@ -76,8 +77,9 @@ public class VendorController extends AbstractTemplateController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LOG.info("Inside EmployeeController::initialize");
+        LOG.info("Inside VendorController::initialize");
         vendorTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        vendorTable.setEditable(true);
         setTableColumnProperties();
         populateVendors();
     }
@@ -109,13 +111,39 @@ public class VendorController extends AbstractTemplateController {
         }
 
     }
+    
+    @FXML
+    private void handleEditCommitEvent(TableColumn.CellEditEvent<Vendor, String> event){
+        String inputFxId = ((TableColumn)event.getSource()).getId();
+        LOG.info("Event trigerred from : " + inputFxId);
+        Vendor vendor = event.getRowValue();
+        switch(inputFxId){
+            case "colName":
+                vendor.setName(event.getNewValue());
+                break;
+            case "colPhoneNum":
+                vendor.setPhoneNumber(event.getNewValue());
+                break;
+            case "colEmail":
+                vendor.setEmail(event.getNewValue());
+                break;
+            case "colVendorRep":
+                vendor.setVendorRep(event.getNewValue());
+        }
+        vendorService.save(vendor);
+        
+    }
 
     private void setTableColumnProperties() {
         colVendorId.setCellValueFactory(new PropertyValueFactory<>("vendorID"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colName.setCellFactory(TextFieldTableCell.forTableColumn());
         colPhoneNum.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        colPhoneNum.setCellFactory(TextFieldTableCell.forTableColumn());
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
         colVendorRep.setCellValueFactory(new PropertyValueFactory<>("vendorRep"));
+        colVendorRep.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     private void populateVendors() {

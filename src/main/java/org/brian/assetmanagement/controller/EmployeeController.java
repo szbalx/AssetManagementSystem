@@ -6,6 +6,7 @@
 package org.brian.assetmanagement.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -21,6 +22,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import org.brian.assetmanagement.bean.Employee;
 import org.brian.assetmanagement.config.FXMLSceneManager;
 import org.brian.assetmanagement.service.EmployeeService;
@@ -74,6 +76,7 @@ public class EmployeeController extends AbstractTemplateController {
     public void initialize(URL location, ResourceBundle resources) {
         LOG.info("Inside EmployeeController::initialize");
         employeeTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        employeeTable.setEditable(true);
         setTableColumnProperties();
         populateEmployees();
     }
@@ -105,11 +108,39 @@ public class EmployeeController extends AbstractTemplateController {
         }
 
     }
+    
+    @FXML
+    private void handleEditCommitEvent(TableColumn.CellEditEvent<Employee, String> event){
+        String inputFxId = ((TableColumn)event.getSource()).getId();
+        LOG.info("Event trigerred from : " + inputFxId );
+        Long empId = event.getRowValue().getEmployeeID();
+        Employee emp = event.getRowValue();
+        switch(inputFxId){
+            case "colEmpName":
+                emp.setName(event.getNewValue());
+                break;
+            case "colPhoneNum":
+                emp.setPhoneNumber(event.getNewValue());
+                break;
+            case "colEmpEmail":
+                emp.setEmail(event.getNewValue());
+                break;
+            case "colStartDate":
+                emp.setStartDate(LocalDate.parse(event.getNewValue()));
+                break;
+        }
+        employeeService.save(emp);
+        
+    }
+    
     private void setTableColumnProperties() {
         colEmpId.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
         colEmpName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colEmpName.setCellFactory(TextFieldTableCell.forTableColumn());
         colPhoneNum.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        colPhoneNum.setCellFactory(TextFieldTableCell.forTableColumn());
         colEmpEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colEmpEmail.setCellFactory(TextFieldTableCell.forTableColumn());
         colStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
     }
 
