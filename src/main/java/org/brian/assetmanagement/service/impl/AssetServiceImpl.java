@@ -63,4 +63,10 @@ public class AssetServiceImpl implements AssetService{
         assetRepository.deleteInBatch(selectedAssets);
     }
 
+    @Override
+    public List<Asset> getAllAssetsAssignedTo(String assignedTo) {
+        LOG.info("AssetServiceImpl.getAllAssetsAssignedTo() called");
+        return assetRepository.findByAssigned(assignedTo);
+    }
+
 }

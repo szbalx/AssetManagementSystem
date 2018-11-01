@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -145,10 +146,11 @@ public class AssetController extends AbstractTemplateController{
         colModel.setCellFactory(TextFieldTableCell.forTableColumn());
         colSerial.setCellValueFactory(new PropertyValueFactory<>("serial"));
         colSerial.setCellFactory(TextFieldTableCell.forTableColumn());
-        colAssignedTo.setCellValueFactory(new PropertyValueFactory<>("assignedTo"));
+//        colAssignedTo.setCellValueFactory(new PropertyValueFactory<>("assignedTo"));
         empNames.clear();
         empNames.addAll(employeeService.getEmployeeNamesOnly());
         colAssignedTo.setCellFactory(ComboBoxTableCell.forTableColumn(empNames));
+        colAssignedTo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssigned()));
  
     }
     
@@ -172,7 +174,8 @@ public class AssetController extends AbstractTemplateController{
                 asset.setSerial(newValue);
                 break;
             case "colAssignedTo":
-                asset.setAssignedTo(newValue);
+                asset.setAssigned(newValue);
+                LOG.info("handleEditCommitEvent :: case : colAssignedTo - newValue = " + event.getNewValue());
                 break;
         }
         assetService.save(asset);

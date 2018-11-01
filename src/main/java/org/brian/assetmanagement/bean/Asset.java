@@ -35,8 +35,8 @@ public class Asset {
     @Column(name = "serial")
     private String serial;
 
-    @Column(name = "assigned_to")
-    private String assignedTo;
+    @Column(name = "assigned")
+    private String assigned;
 
     @Column(name = "purchaseDate")
     private LocalDate purchaseDate;
@@ -93,12 +93,12 @@ public class Asset {
         this.serial = serial;
     }
 
-    public String getAssignedTo() {
-        return assignedTo;
+    public String getAssigned() {
+        return assigned;
     }
 
-    public void setAssignedTo(String assignedTo) {
-        this.assignedTo = assignedTo;
+    public void setAssigned(String assignedTo) {
+        this.assigned = assignedTo;
     }
 
     public LocalDate getPurchaseDate() {
@@ -145,7 +145,7 @@ public class Asset {
     public String toString() {
         return "Asset{" + "id=" + id + ", type=" + type +
                 ", manufacturer=" + manufacturer + ", model=" + model + 
-                ", serial=" + serial + ", assignedTo=" + assignedTo + 
+                ", serial=" + serial + ", assignedTo=" + assigned + 
                 ", purchaseDate=" + purchaseDate + ", warranty=" + warranty + 
                 ", os=" + os + ", hdSize=" + hdSize + ", ram=" + ram + '}';
     }

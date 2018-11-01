@@ -119,7 +119,7 @@ public class AssetDetailsController extends AbstractTemplateController {
                 oldAsset.setManufacturer(manufacturer.getText());
                 oldAsset.setModel(model.getText());
                 oldAsset.setSerial(serialNumber.getText());
-                oldAsset.setAssignedTo((String) assignedTo.getValue());
+                oldAsset.setAssigned((String) assignedTo.getValue());
                 oldAsset.setPurchaseDate(purchaseDate.getValue());
                 oldAsset.setWarranty(warranty.getText());
                 oldAsset.setOs(os.getText());
@@ -133,7 +133,7 @@ public class AssetDetailsController extends AbstractTemplateController {
                 asset.setManufacturer(manufacturer.getText());
                 asset.setModel(model.getText());
                 asset.setSerial(serialNumber.getText());
-                asset.setAssignedTo((String) assignedTo.getValue());
+                asset.setAssigned((String) assignedTo.getValue());
                 asset.setPurchaseDate(purchaseDate.getValue());
                 asset.setWarranty(warranty.getText());
                 asset.setOs(os.getText());
