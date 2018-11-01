@@ -75,7 +75,7 @@ public class EmployeeDetailsController extends AbstractTemplateController {
                 oldEmp.setEmail(email.getText());
                 oldEmp.setName(name.getText());
                 oldEmp.setPhoneNumber(phoneNumber.getText());
-                oldEmp.setStartDate(startDate.getValue().toString());
+                oldEmp.setStartDate(startDate.getValue());
                 employeeService.save(oldEmp);
             } else {
                 Employee emp = new Employee();
@@ -83,7 +83,7 @@ public class EmployeeDetailsController extends AbstractTemplateController {
                 emp.setEmail(email.getText());
                 emp.setName(name.getText());
                 emp.setPhoneNumber(phoneNumber.getText());
-                emp.setStartDate(startDate.getValue().toString());
+                emp.setStartDate(startDate.getValue());
                 employeeService.save(emp);
             }
             refreshForm();

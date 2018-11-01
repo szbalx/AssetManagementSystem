@@ -33,7 +33,7 @@ public class Employee {
     private String email;
     
     @Column(name = "start_date")
-    private String startDate;
+    private LocalDate startDate;
 
     public long getEmployeeID() {
         return employeeID;
@@ -67,11 +67,11 @@ public class Employee {
         this.email = email;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
