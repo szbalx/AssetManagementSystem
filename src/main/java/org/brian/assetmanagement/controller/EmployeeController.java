@@ -18,11 +18,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
 import org.brian.assetmanagement.bean.Employee;
 import org.brian.assetmanagement.config.FXMLSceneManager;
 import org.brian.assetmanagement.service.EmployeeService;
@@ -126,7 +129,7 @@ public class EmployeeController extends AbstractTemplateController {
                 emp.setEmail(event.getNewValue());
                 break;
             case "colStartDate":
-                emp.setStartDate(LocalDate.parse(event.getNewValue()));
+                emp.setStartDate(event.getNewValue());
                 break;
         }
         employeeService.save(emp);
@@ -142,6 +145,7 @@ public class EmployeeController extends AbstractTemplateController {
         colEmpEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colEmpEmail.setCellFactory(TextFieldTableCell.forTableColumn());
         colStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+//        colStartDate.setCellFactory(datePickerCellFactory);
     }
 
     private void populateEmployees() {
@@ -149,5 +153,31 @@ public class EmployeeController extends AbstractTemplateController {
         empList.addAll(employeeService.getAll());
         employeeTable.setItems(empList);
     }
+    
+    Callback<TableColumn<Employee, String>, TableCell<Employee, String>> datePickerCellFactory = new Callback<TableColumn<Employee, String>, TableCell<Employee, String>>() {
+        @Override
+        public TableCell call(final TableColumn<Employee, String> param) {
+
+            final TableCell<Employee, String> cell = new TableCell<Employee, String>() {
+
+                final DatePicker datePicker = new DatePicker();
+
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+                    } else {
+                        if(isEditing()){
+                            setGraphic(datePicker);
+//                            setText(null);
+                        }
+                    }
+                }
+            };
+            return cell;
+        }
+    };
 
 }
