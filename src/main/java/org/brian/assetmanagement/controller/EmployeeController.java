@@ -106,9 +106,10 @@ public class EmployeeController extends AbstractTemplateController {
                 Optional<ButtonType> action = alert.showAndWait();
 
                 if (action.get() == ButtonType.OK) {
+                    resetAssignedToInAssets(selectedEmployees);
                     employeeService.deleteInBatch(selectedEmployees);
                     populateEmployees();
-                    resetAssignedToInAssets(selectedEmployees);
+                    
                 }
             }
         }
@@ -157,11 +158,16 @@ public class EmployeeController extends AbstractTemplateController {
     }
 
     private void resetAssignedToInAssets(List<Employee> selectedEmployees) {
+        LOG.debug("inside resetAssignedToInAssets.....");
         selectedEmployees.forEach((e) -> {
             List<Asset> assetList = assetService.getAllAssetsAssignedTo(e.getName());
             assetList.forEach((a) -> {
-                LOG.info("Asset with ID " + a.getId() + " assigned To " + a.getAssigned());
+                LOG.debug("Asset with ID " + a.getId() + " assigned To " + a.getAssigned());
+                LOG.debug("Setting it to unassigned..");
+                a.setAssigned("");
+
             });
+            assetService.save(assetList);
         });
     }
 

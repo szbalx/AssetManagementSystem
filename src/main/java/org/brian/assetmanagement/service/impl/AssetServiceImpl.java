@@ -35,6 +35,12 @@ public class AssetServiceImpl implements AssetService{
     }
     
     @Override
+    public void save(List<Asset> assetList){
+        LOG.debug("AssetServiceImpl.save(list) called...");
+        assetRepository.save(assetList);
+    }
+    
+    @Override
     public Asset getOneAsset(Long id){
         LOG.debug("AssetServiceImpl.getOneAsset() called");
         return assetRepository.findOne(id);
