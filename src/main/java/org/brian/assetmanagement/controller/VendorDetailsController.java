@@ -101,7 +101,7 @@ public class VendorDetailsController extends AbstractTemplateController {
     private boolean validateVendorDetails() {
         return validate("vendorId", vendorId.getText(), "^[\\d\\s]+$")
                 && validate("name", name.getText(), "^[A-Za-z\\s]+$")
-                && validate("phoneNumber", phoneNumber.getText(), "^[\\d]+$")
+                && validate("phoneNumber", phoneNumber.getText(), "^[\\d-.]+$")
                 && validate("email", email.getText(), "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")
                 && validate("vendorRep", vendorRep.getText(), "^[\\w\\s]+$");
     }
