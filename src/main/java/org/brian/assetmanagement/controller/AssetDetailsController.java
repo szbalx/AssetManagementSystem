@@ -37,6 +37,8 @@ import org.springframework.stereotype.Controller;
 public class AssetDetailsController extends AbstractTemplateController {
 
     private static final Logger LOG = getLogger(AssetDetailsController.class);
+    
+    private boolean isDisabled = false;
 
     @Autowired
     private AssetService assetService;
@@ -157,7 +159,11 @@ public class AssetDetailsController extends AbstractTemplateController {
                 // no need to validate values from assignedTo combo box as it is populated from database and not inputted by user.
                 && emptyValidation("purchaseDate", purchaseDate.getEditor().getText().isEmpty())
                 && validate("warranty", warranty.getText(), "^[\\w\\s]+$")
-                && validate("os", os.getText(), "^[\\w\\s]+$")
+                && (!isDisabled?validateOptionalFields():true);
+    }
+    
+    private boolean validateOptionalFields(){
+        return validate("os", os.getText(), "^[\\w\\s]+$")
                 && validate("hdSize", hdSize.getText(), "^[\\w\\s]+$")
                 && validate("ram", ram.getText(), "^[\\w\\s]+$");
     }
@@ -186,4 +192,42 @@ public class AssetDetailsController extends AbstractTemplateController {
         alert.showAndWait();
     }
 
+    @FXML
+    public void handleAssetTypeChange(ActionEvent event) {
+        enableDisableOptionalFields(type.getSelectionModel().getSelectedItem().toString());
+    }
+
+    private void enableDisableOptionalFields(String assetType) {
+        switch (assetType) {
+            case "Mouse":
+            case "Keyboard":
+            case "Monitor":
+            case "Projector":
+            case "Printer":
+            case "Docking Station":
+            case "Cable":
+            case "Connector":
+                os.setDisable(true);
+                hdSize.setDisable(true);
+                ram.setDisable(true);
+                isDisabled = true;
+                break;
+                
+            case "Laptop":
+            case "PC":
+            case "Router":
+                os.setDisable(false);
+                hdSize.setDisable(false);
+                ram.setDisable(false);
+                isDisabled = false;
+                break;
+
+            default:
+                os.setDisable(false);
+                hdSize.setDisable(false);
+                ram.setDisable(false);
+                isDisabled = false;
+                break;
+        }
+    }
 }
