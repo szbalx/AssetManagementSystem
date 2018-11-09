@@ -37,7 +37,7 @@ import org.springframework.stereotype.Controller;
 public class AssetDetailsController extends AbstractTemplateController {
 
     private static final Logger LOG = getLogger(AssetDetailsController.class);
-    
+
     private boolean isDisabled = false;
 
     @Autowired
@@ -159,10 +159,10 @@ public class AssetDetailsController extends AbstractTemplateController {
                 // no need to validate values from assignedTo combo box as it is populated from database and not inputted by user.
                 && emptyValidation("purchaseDate", purchaseDate.getEditor().getText().isEmpty())
                 && validate("warranty", warranty.getText(), "^[\\w\\s]+$")
-                && (!isDisabled?validateOptionalFields():true);
+                && (!isDisabled ? validateOptionalFields() : true);
     }
-    
-    private boolean validateOptionalFields(){
+
+    private boolean validateOptionalFields() {
         return validate("os", os.getText(), "^[\\w\\s]+$")
                 && validate("hdSize", hdSize.getText(), "^[\\w\\s]+$")
                 && validate("ram", ram.getText(), "^[\\w\\s]+$");
@@ -175,16 +175,19 @@ public class AssetDetailsController extends AbstractTemplateController {
 
     private void refreshForm() {
         id.clear();
-        type.getSelectionModel().clearSelection();
+        type.setValue(null);
         manufacturer.clear();
         model.clear();
         serialNumber.clear();
         assignedTo.getSelectionModel().clearSelection();
         purchaseDate.getEditor().clear();
         warranty.clear();
-        os.clear();
-        hdSize.clear();
-        ram.clear();
+        if (!isDisabled) {
+            os.clear();
+            hdSize.clear();
+            ram.clear();
+        }
+
     }
 
     private void showCreateAlert() {
@@ -212,7 +215,7 @@ public class AssetDetailsController extends AbstractTemplateController {
                 ram.setDisable(true);
                 isDisabled = true;
                 break;
-                
+
             case "Laptop":
             case "PC":
             case "Router":

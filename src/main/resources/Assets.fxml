@@ -81,6 +81,11 @@
                         <TableColumn fx:id="colModel" onEditCommit="#handleEditCommitEvent" prefWidth="155.0" text="Model" />
                         <TableColumn fx:id="colSerial" onEditCommit="#handleEditCommitEvent" prefWidth="156.0" text="Serial" />
                         <TableColumn fx:id="colAssignedTo" onEditCommit="#handleEditCommitEvent" prefWidth="195.0" text="Assigned To" />
+                        <TableColumn fx:id="colPurchaseDate" onEditCommit="#handleEditCommitEvent" prefWidth="195.0" text="Purchase Date" />
+                        <TableColumn fx:id="colWarranty" onEditCommit="#handleEditCommitEvent" prefWidth="195.0" text="Warranty" />
+                        <TableColumn fx:id="colOs" onEditCommit="#handleEditCommitEvent" prefWidth="195.0" text="OS" />
+                        <TableColumn fx:id="colHdSize" onEditCommit="#handleEditCommitEvent" prefWidth="195.0" text="HD Size" />
+                        <TableColumn fx:id="colRam" onEditCommit="#handleEditCommitEvent" prefWidth="195.0" text="RAM" />
                     </columns>
                   </TableView>
                </children>

@@ -6,6 +6,7 @@
 package org.brian.assetmanagement.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -40,44 +41,60 @@ import org.springframework.stereotype.Controller;
  * @author Kavitha
  */
 @Controller
-public class AssetController extends AbstractTemplateController{
+public class AssetController extends AbstractTemplateController {
+
     private static final Logger LOG = getLogger(AssetController.class);
-        
+
     @Autowired
     private AssetService assetService;
-    
+
     @Autowired
     private EmployeeService employeeService;
-    
+
     @FXML
     private TableView<Asset> assetTable;
-    
+
     @FXML
     private TableColumn<Asset, Long> colId;
-    
+
     @FXML
     private TableColumn<Asset, String> colType;
-    
+
     @FXML
     private TableColumn<Asset, String> colManufacturer;
-    
+
     @FXML
     private TableColumn<Asset, String> colModel;
-    
+
     @FXML
     private TableColumn<Asset, String> colSerial;
-    
+
     @FXML
     private TableColumn<Asset, String> colAssignedTo;
+
+    @FXML
+    private TableColumn<Asset, String> colPurchaseDate;
+
+    @FXML
+    private TableColumn<Asset, String> colWarranty;
     
+    @FXML
+    private TableColumn<Asset, String> colOs;
+    
+    @FXML
+    private TableColumn<Asset, String> colHdSize;
+    
+    @FXML
+    private TableColumn<Asset, String> colRam;
+    
+
     @FXML
     private Button deleteBtn;
 
-    
     @Autowired
     @Lazy
     private FXMLSceneManager sceneManager;
-    
+
     private ObservableList<Asset> assetList = FXCollections.observableArrayList();
     private ObservableList<String> empNames = FXCollections.observableArrayList();
     private ObservableList<String> assetTypes = FXCollections.observableArrayList(
@@ -101,11 +118,12 @@ public class AssetController extends AbstractTemplateController{
         setTableColumnProperties();
         populateAssets();
     }
-    
+
     @FXML
     private void exit(ActionEvent event) {
         Platform.exit();
     }
+
     @FXML
     private void delete(ActionEvent event) {
         if (assetTable.getItems() == null || assetTable.getItems().isEmpty()) {
@@ -128,7 +146,6 @@ public class AssetController extends AbstractTemplateController{
         }
 
     }
-    
 
     private void populateAssets() {
         assetList.clear();
@@ -146,21 +163,30 @@ public class AssetController extends AbstractTemplateController{
         colModel.setCellFactory(TextFieldTableCell.forTableColumn());
         colSerial.setCellValueFactory(new PropertyValueFactory<>("serial"));
         colSerial.setCellFactory(TextFieldTableCell.forTableColumn());
-//        colAssignedTo.setCellValueFactory(new PropertyValueFactory<>("assignedTo"));
+
         empNames.clear();
         empNames.addAll(employeeService.getEmployeeNamesOnly());
         colAssignedTo.setCellFactory(ComboBoxTableCell.forTableColumn(empNames));
         colAssignedTo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssigned()));
- 
+
+        colPurchaseDate.setCellValueFactory(new PropertyValueFactory<>("purchaseDate"));
+        colWarranty.setCellValueFactory(new PropertyValueFactory<>("warranty"));
+        colWarranty.setCellFactory(TextFieldTableCell.forTableColumn());
+        colOs.setCellValueFactory(new PropertyValueFactory<>("os"));
+        colOs.setCellFactory(TextFieldTableCell.forTableColumn());
+        colHdSize.setCellValueFactory(new PropertyValueFactory<>("hdSize"));
+        colHdSize.setCellFactory(TextFieldTableCell.forTableColumn());
+        colRam.setCellValueFactory(new PropertyValueFactory<>("ram"));
+        colRam.setCellFactory(TextFieldTableCell.forTableColumn());
     }
-    
+
     @FXML
-    private void handleEditCommitEvent(TableColumn.CellEditEvent<Asset, String> event){
-        LOG.info("Event trigerred from : " + ((TableColumn)event.getSource()).getId());
+    private void handleEditCommitEvent(TableColumn.CellEditEvent<Asset, String> event) {
+        LOG.info("Event trigerred from : " + ((TableColumn) event.getSource()).getId());
         Asset asset = event.getRowValue();
-        String sourceId = ((TableColumn)event.getSource()).getId();
+        String sourceId = ((TableColumn) event.getSource()).getId();
         String newValue = event.getNewValue();
-        switch(sourceId){
+        switch (sourceId) {
             case "colType":
                 asset.setType(newValue);
                 break;
@@ -176,6 +202,21 @@ public class AssetController extends AbstractTemplateController{
             case "colAssignedTo":
                 asset.setAssigned(newValue);
                 LOG.info("handleEditCommitEvent :: case : colAssignedTo - newValue = " + event.getNewValue());
+                break;
+            case "colPurchaseDate":
+                asset.setPurchaseDate(LocalDate.parse(newValue));
+                break;
+            case "colWarranty":
+                asset.setWarranty(newValue);
+                break;
+            case "colOs":
+                asset.setOs(newValue);
+                break;
+            case "colHdSize":
+                asset.setHdSize(newValue);
+                break;
+            case "colRam":
+                asset.setRam(newValue);
                 break;
         }
         assetService.save(asset);
